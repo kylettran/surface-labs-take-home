@@ -1,6 +1,8 @@
 import { dataProvider } from "@/lib/data-provider";
 import PipelineBoard from "@/app/components/PipelineBoard";
 
+export const dynamic = "force-dynamic";
+
 export default function PipelinePage() {
   return (
     <div className="space-y-6">
