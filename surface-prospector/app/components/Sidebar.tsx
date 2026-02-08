@@ -79,12 +79,16 @@ export default function Sidebar() {
         </p>
         <div className="mt-3 space-y-2 text-xs text-text-secondary">
           {Object.entries(statusLabels).map(([key, label]) => (
-            <div key={key} className="flex items-center justify-between">
+            <Link
+              key={key}
+              href={`/pipeline?status=${key}`}
+              className="flex items-center justify-between rounded-md px-2 py-1 hover:bg-ink"
+            >
               <span>{label}</span>
               <span className="font-mono text-text-primary">
                 {counts[key] ?? 0}
               </span>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

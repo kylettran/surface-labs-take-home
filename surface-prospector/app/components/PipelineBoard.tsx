@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Company } from "@/lib/types";
 import { estimateDriveScoreTotal } from "@/lib/drive-scorer";
 import { storage } from "@/lib/storage";
@@ -17,6 +19,10 @@ const columns = [
 export default function PipelineBoard({ companies }: { companies: Company[] }) {
   const snapshot = useStorageSnapshot();
   const [flashId, setFlashId] = useState<string | null>(null);
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const statusFilter = searchParams.get("status");
 
   const itemsByStatus = useMemo(() => {
     const grouped: Record<string, Company[]> = {
@@ -29,12 +35,13 @@ export default function PipelineBoard({ companies }: { companies: Company[] }) {
 
     companies.forEach((company) => {
       const status = snapshot.statuses?.[company.id]?.status ?? "queued";
+      if (statusFilter && statusFilter !== status) return;
       grouped[status] = grouped[status] ?? [];
       grouped[status].push(company);
     });
 
     return grouped;
-  }, [companies, snapshot]);
+  }, [companies, snapshot, statusFilter]);
 
   const activity = snapshot.activity ?? [];
   const now = Date.now();
@@ -85,7 +92,15 @@ export default function PipelineBoard({ companies }: { companies: Company[] }) {
                   <div
                     key={company.id}
                     draggable
-                    onDragStart={(event) => event.dataTransfer.setData("text/plain", company.id)}
+                    onDragStart={(event) => {
+                      event.dataTransfer.setData("text/plain", company.id);
+                      setDraggingId(company.id);
+                    }}
+                    onDragEnd={() => setDraggingId(null)}
+                    onClick={() => {
+                      if (draggingId === company.id) return;
+                      router.push(`/account/${company.id}`);
+                    }}
                     className={`rounded-lg border border-border bg-ink p-3 text-xs text-text-secondary transition-shadow ${
                       flashId === company.id ? "animate-flash" : ""
                     }`}
