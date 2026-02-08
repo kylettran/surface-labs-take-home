@@ -1,0 +1,6 @@
+<svg width="160" height="40" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="160" height="40" rx="8" fill="#141415" />
+  <circle cx="24" cy="20" r="10" fill="#3B82F6" />
+  <path d="M24 12L30 24H18L24 12Z" fill="#0A0A0B" />
+  <text x="44" y="24" fill="#FAFAFA" font-size="14" font-family="Arial, sans-serif">Surface</text>
+</svg>
