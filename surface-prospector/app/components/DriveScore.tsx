@@ -35,11 +35,11 @@ export default function DriveScoreCard({ score }: { score: DriveScore }) {
             DRIVE Score
           </p>
           <p className="mt-1 text-2xl font-semibold text-text-primary">
-            <span className="font-mono">{score.total}</span>
+            <span className="font-mono">{score.total * 2}</span>
           </p>
         </div>
         <div className="rounded-full border border-border bg-ink px-3 py-1 text-xs text-text-secondary">
-          Max 50
+          Max 100
         </div>
       </div>
       <div className="space-y-3">

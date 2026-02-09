@@ -42,9 +42,12 @@ export default function Sidebar() {
 
   return (
     <aside className="w-52 shrink-0 border-r border-border bg-surface px-4 py-6">
-      <div className="text-sm font-semibold tracking-wide text-text-primary">
+      <Link
+        href="/"
+        className="text-sm font-semibold tracking-wide text-text-primary hover:text-blue-300"
+      >
         Surface Labs
-      </div>
+      </Link>
       <div className="mt-6 space-y-1">
         {navItems.map((item) => {
           const isActive = pathname === item.href;

@@ -87,7 +87,9 @@ export default function PipelineBoard({ companies }: { companies: Company[] }) {
             </div>
             <div className="space-y-2">
               {(itemsByStatus[column.key] ?? []).map((company) => {
-                const score = snapshot.scores?.[company.id]?.total ?? estimateDriveScoreTotal(company);
+                const score =
+                  snapshot.scores?.[company.id]?.total ?? estimateDriveScoreTotal(company);
+                const score100 = score * 2;
                 return (
                   <div
                     key={company.id}
@@ -109,7 +111,7 @@ export default function PipelineBoard({ companies }: { companies: Company[] }) {
                       <span className="text-sm font-semibold text-text-primary">
                         {company.name}
                       </span>
-                      <span className="font-mono text-text-primary">{score}</span>
+                      <span className="font-mono text-text-primary">{score100}</span>
                     </div>
                     <p className="mt-1 text-[11px] text-text-secondary">
                       {snapshot.statuses?.[company.id]?.updatedAt

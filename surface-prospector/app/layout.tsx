@@ -4,6 +4,7 @@ import "./globals.css";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import ToastProvider from "./components/ToastProvider";
+import CallGuide from "./components/CallGuide";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
               <main className="px-6 py-6 fade-in">{children}</main>
             </div>
           </div>
+          <CallGuide />
         </ToastProvider>
       </body>
     </html>

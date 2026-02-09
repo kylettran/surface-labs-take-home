@@ -20,7 +20,7 @@ export default function Header() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold text-text-primary">
-            Surface Prospector
+            Deep Surface Prospector
           </h1>
           <p className="mt-1 text-xs text-text-secondary">
             {dayLabel}: {rotation.label} • {queuedCount} accounts queued
