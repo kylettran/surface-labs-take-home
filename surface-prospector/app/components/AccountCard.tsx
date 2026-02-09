@@ -161,27 +161,27 @@ export default function AccountCard({
             <div className="grid gap-2 text-xs text-text-secondary">
               <div className="flex items-center justify-between rounded-lg border border-border bg-surface px-3 py-2">
                 <span>Demo-dependent</span>
-                <span className="font-mono text-text-primary">{driveScore.demo}/10</span>
+                <span className="font-mono text-text-primary">{driveScore.demo * 10}/100</span>
               </div>
               <div className="flex items-center justify-between rounded-lg border border-border bg-surface px-3 py-2">
                 <span>Real ad spend</span>
                 <span className="font-mono text-text-primary">
-                  {driveScore.realAdSpend}/10
+                  {driveScore.realAdSpend * 10}/100
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg border border-border bg-surface px-3 py-2">
                 <span>Intricate routing</span>
                 <span className="font-mono text-text-primary">
-                  {driveScore.intricateRouting}/10
+                  {driveScore.intricateRouting * 10}/100
                 </span>
               </div>
               <div className="flex items-center justify-between rounded-lg border border-border bg-surface px-3 py-2">
                 <span>Velocity</span>
-                <span className="font-mono text-text-primary">{driveScore.velocity}/10</span>
+                <span className="font-mono text-text-primary">{driveScore.velocity * 10}/100</span>
               </div>
               <div className="flex items-center justify-between rounded-lg border border-border bg-surface px-3 py-2">
                 <span>Evidence</span>
-                <span className="font-mono text-text-primary">{driveScore.evidence}/10</span>
+                <span className="font-mono text-text-primary">{driveScore.evidence * 10}/100</span>
               </div>
             </div>
           )}
