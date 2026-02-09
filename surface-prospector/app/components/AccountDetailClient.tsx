@@ -249,16 +249,7 @@ export default function AccountDetailClient({ company }: { company: Company }) {
 
       <div className="space-y-6">
         <div className="rounded-2xl border border-border bg-surface p-4">
-          <div className="flex flex-wrap gap-2">
-            <button
-              className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white"
-              onClick={() => setShowEmail((prev) => !prev)}
-              disabled={!score}
-            >
-              Generate Email
-            </button>
-          </div>
-          <p className={`mt-2 text-xs text-text-secondary ${flashStatus ? "animate-flash" : ""}`}>
+          <p className={`text-xs text-text-secondary ${flashStatus ? "animate-flash" : ""}`}>
             Current status: <span className="text-text-primary">{status.replace("_", " ")}</span>
           </p>
         </div>
@@ -309,23 +300,31 @@ export default function AccountDetailClient({ company }: { company: Company }) {
                 </p>
                 <p className="mt-2 text-xs text-rose-100/80">{score.summary}</p>
               </div>
-              <button
-                className="mt-4 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white"
-                onClick={() => setShowEmail(true)}
-              >
-                Generate Email
-              </button>
             </div>
             <div className="rounded-2xl border border-border bg-surface p-4">
               <p className="text-xs uppercase tracking-wide text-text-secondary">
                 Next Step
               </p>
-              <button
-                className="mt-3 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white"
-                onClick={() => setShowEmail(true)}
-              >
-                Generate Email
-              </button>
+              <p className="mt-2 text-sm text-text-secondary">
+                {status === "queued" &&
+                  "Send the first-touch email to validate pain and open a conversation."}
+                {status === "contacted" &&
+                  "Follow up with a value-driven nudge to keep momentum."}
+                {status === "replied" &&
+                  "Propose a strategic call to confirm fit and next steps."}
+                {status === "meeting_booked" &&
+                  "Prep the meeting notes and confirm stakeholders."}
+                {status === "skipped" &&
+                  "Skip for now or re-qualify later with a different angle."}
+              </p>
+              {(status === "queued" || status === "contacted") && (
+                <button
+                  className="mt-3 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white"
+                  onClick={() => setShowEmail(true)}
+                >
+                  Generate Email
+                </button>
+              )}
             </div>
             {showEmail && (
               <div className="transition-all duration-500 animate-fade-in">

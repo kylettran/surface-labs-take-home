@@ -18,6 +18,11 @@ export default function EmailDraft({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [angle, setAngle] = useState(DEFAULT_ANGLES[0]);
+  const presets = [
+    { key: "generic", label: "Generic", angle: "baseline intro" },
+    { key: "pain", label: "Pain Point", angle: "pain-led" },
+    { key: "creative", label: "Creative Follow-up", angle: "conversation follow-up" },
+  ];
   const [showAngles, setShowAngles] = useState(false);
 
   const generateEmail = useCallback(
@@ -115,24 +120,22 @@ export default function EmailDraft({
             onClick={() => setShowAngles((prev) => !prev)}
             className="rounded-full border border-border px-3 py-1 text-xs text-text-secondary hover:text-text-primary"
           >
-            Try Different Angle
+            Choose Style
           </button>
         </div>
       </div>
 
       {showAngles && (
         <div className="mt-3 flex flex-wrap gap-2">
-          {DEFAULT_ANGLES.filter((item) => item !== angle)
-            .slice(0, 3)
-            .map((item) => (
-              <button
-                key={item}
-                className="rounded-full bg-ink px-3 py-1 text-xs text-text-secondary hover:text-text-primary"
-                onClick={() => handleGenerate(item)}
-              >
-                {item}
-              </button>
-            ))}
+          {presets.map((item) => (
+            <button
+              key={item.key}
+              className="rounded-full bg-ink px-3 py-1 text-xs text-text-secondary hover:text-text-primary"
+              onClick={() => handleGenerate(item.angle)}
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
       )}
 
