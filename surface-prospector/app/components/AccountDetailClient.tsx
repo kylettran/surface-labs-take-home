@@ -212,19 +212,7 @@ export default function AccountDetailClient({ company }: { company: Company }) {
             onChange={(event) => setNotes(event.target.value)}
             onBlur={() => storage.setNotes(company.id, notes)}
           />
-        </div>
-      </div>
-
-      <div className="space-y-6">
-        <div className="rounded-2xl border border-border bg-surface p-4">
-          <div className="flex flex-wrap gap-2">
-            <button
-              className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white"
-              onClick={() => setShowEmail((prev) => !prev)}
-              disabled={!score}
-            >
-              Generate Email
-            </button>
+          <div className="mt-4 flex flex-wrap gap-2">
             <button
               className="rounded-full border border-border px-4 py-2 text-xs text-text-secondary hover:text-text-primary"
               onClick={() => updateStatus("contacted")}
@@ -250,16 +238,43 @@ export default function AccountDetailClient({ company }: { company: Company }) {
               Book Meeting
             </button>
           </div>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <div className="rounded-2xl border border-border bg-surface p-4">
+          <div className="flex flex-wrap gap-2">
+            <button
+              className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white"
+              onClick={() => setShowEmail((prev) => !prev)}
+              disabled={!score}
+            >
+              Generate Email
+            </button>
+          </div>
           <p className={`mt-2 text-xs text-text-secondary ${flashStatus ? "animate-flash" : ""}`}>
             Current status: <span className="text-text-primary">{status.replace("_", " ")}</span>
           </p>
         </div>
 
         {isLoading && (
-          <div className="space-y-3 rounded-2xl border border-border bg-surface p-4 animate-pulse">
-            <div className="h-4 w-1/3 rounded bg-ink" />
-            <div className="h-24 rounded bg-ink" />
-            <div className="h-10 rounded bg-ink" />
+          <div className="space-y-4 rounded-2xl border border-border bg-surface p-6">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+              <div>
+                <p className="text-sm font-semibold text-text-primary">
+                  Scoring in progress
+                </p>
+                <p className="text-xs text-text-secondary">
+                  Analyzing DRIVE signals with Claude…
+                </p>
+              </div>
+            </div>
+            <div className="space-y-3 animate-pulse">
+              <div className="h-4 w-1/3 rounded bg-ink" />
+              <div className="h-24 rounded bg-ink" />
+              <div className="h-10 rounded bg-ink" />
+            </div>
           </div>
         )}
 

@@ -137,9 +137,22 @@ export default function EmailDraft({
       )}
 
       {isLoading && (
-        <div className="mt-4 animate-pulse space-y-3">
-          <div className="h-4 w-1/3 rounded bg-ink" />
-          <div className="h-24 rounded bg-ink" />
+        <div className="mt-4 rounded-xl border border-border bg-ink p-4">
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+            <div>
+              <p className="text-sm font-semibold text-text-primary">
+                Generating email
+              </p>
+              <p className="text-xs text-text-secondary">
+                Writing a tailored outbound message…
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 animate-pulse space-y-3">
+            <div className="h-4 w-1/3 rounded bg-surface" />
+            <div className="h-24 rounded bg-surface" />
+          </div>
         </div>
       )}
 
