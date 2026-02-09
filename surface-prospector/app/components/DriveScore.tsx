@@ -50,7 +50,7 @@ export default function DriveScoreCard({ score }: { score: DriveScore }) {
             <div key={item.key} className="space-y-1">
               <div className="flex items-center justify-between text-xs text-text-secondary">
                 <span>{item.label}</span>
-                <span className="font-mono text-text-primary">{value}/10</span>
+                <span className="font-mono text-text-primary">{value * 10}/100</span>
               </div>
               <div className="h-2 w-full rounded-full bg-ink">
                 <div

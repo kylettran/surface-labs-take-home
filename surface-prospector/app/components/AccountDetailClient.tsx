@@ -212,27 +212,33 @@ export default function AccountDetailClient({ company }: { company: Company }) {
             onChange={(event) => setNotes(event.target.value)}
             onBlur={() => storage.setNotes(company.id, notes)}
           />
+        </div>
+
+        <div className="rounded-2xl border border-border bg-surface p-6">
+          <p className="text-xs uppercase tracking-wide text-text-secondary">
+            Status Actions
+          </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <button
-              className="rounded-full border border-border px-4 py-2 text-xs text-text-secondary hover:text-text-primary"
+              className="rounded-full border border-emerald-200/40 bg-emerald-500/15 px-4 py-2 text-xs text-emerald-100 hover:bg-emerald-500/25"
               onClick={() => updateStatus("contacted")}
             >
               Mark as Contacted
             </button>
             <button
-              className="rounded-full border border-border px-4 py-2 text-xs text-text-secondary hover:text-text-primary"
+              className="rounded-full border border-sky-200/40 bg-sky-500/15 px-4 py-2 text-xs text-sky-100 hover:bg-sky-500/25"
               onClick={() => updateStatus("replied")}
             >
               Mark as Replied
             </button>
             <button
-              className="rounded-full border border-border px-4 py-2 text-xs text-text-secondary hover:text-text-primary"
+              className="rounded-full border border-amber-200/40 bg-amber-500/15 px-4 py-2 text-xs text-amber-100 hover:bg-amber-500/25"
               onClick={() => updateStatus("skipped")}
             >
               Skip
             </button>
             <button
-              className="rounded-full border border-border px-4 py-2 text-xs text-text-secondary hover:text-text-primary"
+              className="rounded-full border border-violet-200/40 bg-violet-500/15 px-4 py-2 text-xs text-violet-100 hover:bg-violet-500/25"
               onClick={() => updateStatus("meeting_booked")}
             >
               Book Meeting
@@ -297,10 +303,29 @@ export default function AccountDetailClient({ company }: { company: Company }) {
               <p className="text-xs uppercase tracking-wide text-text-secondary">
                 Top Pain Signal
               </p>
-              <p className="mt-2 text-sm font-semibold text-text-primary">
-                {score.topPainSignal}
+              <div className="mt-3 rounded-xl border border-rose-200/40 bg-rose-500/10 p-3">
+                <p className="text-sm font-semibold text-rose-200">
+                  {score.topPainSignal}
+                </p>
+                <p className="mt-2 text-xs text-rose-100/80">{score.summary}</p>
+              </div>
+              <button
+                className="mt-4 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white"
+                onClick={() => setShowEmail(true)}
+              >
+                Generate Email
+              </button>
+            </div>
+            <div className="rounded-2xl border border-border bg-surface p-4">
+              <p className="text-xs uppercase tracking-wide text-text-secondary">
+                Next Step
               </p>
-              <p className="mt-3 text-xs text-text-secondary">{score.summary}</p>
+              <button
+                className="mt-3 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-white"
+                onClick={() => setShowEmail(true)}
+              >
+                Generate Email
+              </button>
             </div>
             {showEmail && (
               <div className="transition-all duration-500 animate-fade-in">
