@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { dataProvider } from "@/lib/data-provider";
 import AccountQueue from "./components/AccountQueue";
 
@@ -13,7 +14,15 @@ export default function HomePage() {
           tailored outreach in minutes.
         </p>
       </div>
-      <AccountQueue companies={dataProvider.getCompanies()} />
+      <Suspense
+        fallback={
+          <div className="rounded-2xl border border-border bg-surface p-6 text-sm text-text-secondary">
+            Loading account queue…
+          </div>
+        }
+      >
+        <AccountQueue companies={dataProvider.getCompanies()} />
+      </Suspense>
     </div>
   );
 }
