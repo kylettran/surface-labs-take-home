@@ -79,6 +79,7 @@ function updateMap<T>(key: string, updater: (current: JsonMap<T>) => JsonMap<T>)
 }
 
 export const storage = {
+  getSnapshot,
   getDriveScore(companyId: string) {
     const { scores } = getSnapshot();
     return scores[companyId] ?? null;

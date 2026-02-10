@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Company } from "@/lib/types";
 import { estimateDriveScoreTotal } from "@/lib/drive-scorer";
 import { filterCompaniesForRotation, getRotationForDate } from "@/lib/rotation";
@@ -38,6 +39,19 @@ export default function AccountQueue({ companies }: { companies: Company[] }) {
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const snapshot = useStorageSnapshot();
   const rotation = getRotationForDate();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const region = searchParams.get("region") as FilterState["region"] | null;
+    const size = searchParams.get("size") as FilterState["size"] | null;
+    const status = searchParams.get("status") as FilterState["status"] | null;
+
+    setFilters((prev) => ({
+      region: region ?? prev.region,
+      size: size ?? prev.size,
+      status: status ?? prev.status,
+    }));
+  }, [searchParams]);
 
   const sorted = useMemo(() => {
     const rotationCompanies = filterCompaniesForRotation(companies, rotation);
