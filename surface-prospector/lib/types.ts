@@ -52,6 +52,11 @@ export interface AccountStatus {
   updatedAt: string;
 }
 
+export interface ApolloSettings {
+  apolloEndpoint?: string;
+  apolloApiKey?: string;
+}
+
 export interface DataProvider {
   getCompanies: () => Company[];
   getCompanyById: (id: string) => Company | undefined;

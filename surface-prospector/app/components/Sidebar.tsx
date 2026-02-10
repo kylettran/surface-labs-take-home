@@ -10,6 +10,7 @@ const navItems = [
   { href: "/leads", label: "Lead Ocean" },
   { href: "/", label: "Dashboard" },
   { href: "/pipeline", label: "Pipeline" },
+  { href: "/settings", label: "Settings" },
 ];
 
 const statusLabels: Record<string, string> = {

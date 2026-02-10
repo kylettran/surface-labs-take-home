@@ -1,4 +1,4 @@
-import type { AccountStatus, DriveScore, OutboundEmail } from "./types";
+import type { AccountStatus, ApolloSettings, DriveScore, OutboundEmail } from "./types";
 
 const KEY_PREFIX = "surface-prospector";
 
@@ -8,6 +8,7 @@ const KEYS = {
   statuses: `${KEY_PREFIX}:statuses`,
   notes: `${KEY_PREFIX}:notes`,
   activity: `${KEY_PREFIX}:activity`,
+  settings: `${KEY_PREFIX}:settings`,
 };
 
 const STORAGE_EVENT = "surface-prospector:storage";
@@ -125,6 +126,13 @@ export const storage = {
   setNotes(companyId: string, notes: string) {
     updateMap(KEYS.notes, (current) => ({ ...current, [companyId]: notes }));
   },
+  getSettings() {
+    if (!isBrowser()) return null;
+    return readJson<ApolloSettings | null>(KEYS.settings, null);
+  },
+  setSettings(settings: ApolloSettings) {
+    writeJson(KEYS.settings, settings);
+  },
   clearAll() {
     if (!isBrowser()) return;
     window.localStorage.removeItem(KEYS.scores);
@@ -132,6 +140,7 @@ export const storage = {
     window.localStorage.removeItem(KEYS.statuses);
     window.localStorage.removeItem(KEYS.notes);
     window.localStorage.removeItem(KEYS.activity);
+    window.localStorage.removeItem(KEYS.settings);
     window.dispatchEvent(new Event(STORAGE_EVENT));
   },
 };
