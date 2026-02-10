@@ -53,10 +53,18 @@ export default function AccountQueue({ companies }: { companies: Company[] }) {
     return filtered
       .map((company) => {
         const cached = snapshot.scores?.[company.id];
+        const statusEntry = snapshot.statuses?.[company.id];
+        const lastTouched = statusEntry?.updatedAt
+          ? new Date(statusEntry.updatedAt).getTime()
+          : null;
+        const isOverdue =
+          (statusEntry?.status ?? "queued") === "queued" &&
+          (!lastTouched || Date.now() - lastTouched > 2 * 24 * 60 * 60 * 1000);
         return {
           company,
           score: cached?.total ?? estimateDriveScoreTotal(company),
           status: snapshot.statuses?.[company.id]?.status ?? "queued",
+          isOverdue,
         };
       })
       .sort((a, b) => b.score - a.score);
@@ -88,6 +96,7 @@ export default function AccountQueue({ companies }: { companies: Company[] }) {
                   company={item.company}
                   scoreTotal={item.score}
                   status={item.status}
+                  isOverdue={item.isOverdue}
                 />
               ))}
             </div>
@@ -106,6 +115,7 @@ export default function AccountQueue({ companies }: { companies: Company[] }) {
               company={item.company}
               scoreTotal={item.score}
               status={item.status}
+              isOverdue={item.isOverdue}
             />
           ))}
         </div>

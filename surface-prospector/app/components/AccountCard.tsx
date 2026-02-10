@@ -23,10 +23,12 @@ export default function AccountCard({
   company,
   scoreTotal,
   status,
+  isOverdue,
 }: {
   company: Company;
   scoreTotal: number;
   status: string;
+  isOverdue?: boolean;
 }) {
   const router = useRouter();
   const initials = company.name
@@ -80,7 +82,9 @@ export default function AccountCard({
       onKeyDown={(event) => {
         if (event.key === "Enter") router.push(`/account/${company.id}`);
       }}
-      className="block rounded-2xl border border-border bg-surface p-4 transition-transform duration-300 ease-out hover:-translate-y-0.5"
+      className={`block rounded-2xl border bg-surface p-4 transition-transform duration-300 ease-out hover:-translate-y-0.5 ${
+        isOverdue ? "border-rose-300/60 shadow-[0_0_0_1px_rgba(251,113,133,0.35)]" : "border-border"
+      }`}
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">

@@ -51,66 +51,56 @@ export default function FilterBar({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-4 rounded-xl border border-border bg-surface px-4 py-3">
-      <div className="flex items-center gap-2">
-        <span className="text-xs uppercase tracking-wide text-text-secondary">
-          Region
-        </span>
-        <div className="flex items-center gap-1">
+      <label className="flex items-center gap-2 text-xs text-text-secondary">
+        Region
+        <select
+          value={filters.region}
+          onChange={(event) =>
+            onChange({ ...filters, region: event.target.value as FilterState["region"] })
+          }
+          className="rounded-lg border border-border bg-ink px-3 py-1 text-xs text-text-primary"
+        >
           {regionOptions.map((option) => (
-            <button
-              key={option}
-              onClick={() => onChange({ ...filters, region: option })}
-              className={`rounded-full px-3 py-1 text-xs transition-colors ${
-                filters.region === option
-                  ? "bg-primary text-white"
-                  : "bg-ink text-text-secondary hover:text-text-primary"
-              }`}
-            >
+            <option key={option} value={option} className="bg-ink">
               {option}
-            </button>
+            </option>
           ))}
-        </div>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-xs uppercase tracking-wide text-text-secondary">
-          Size
-        </span>
-        <div className="flex items-center gap-1">
+        </select>
+      </label>
+
+      <label className="flex items-center gap-2 text-xs text-text-secondary">
+        Size
+        <select
+          value={filters.size}
+          onChange={(event) =>
+            onChange({ ...filters, size: event.target.value as FilterState["size"] })
+          }
+          className="rounded-lg border border-border bg-ink px-3 py-1 text-xs text-text-primary"
+        >
           {sizeOptions.map((option) => (
-            <button
-              key={option}
-              onClick={() => onChange({ ...filters, size: option })}
-              className={`rounded-full px-3 py-1 text-xs transition-colors ${
-                filters.size === option
-                  ? "bg-primary text-white"
-                  : "bg-ink text-text-secondary hover:text-text-primary"
-              }`}
-            >
+            <option key={option} value={option} className="bg-ink">
               {option}
-            </button>
+            </option>
           ))}
-        </div>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-xs uppercase tracking-wide text-text-secondary">
-          Status
-        </span>
-        <div className="flex flex-wrap items-center gap-1">
+        </select>
+      </label>
+
+      <label className="flex items-center gap-2 text-xs text-text-secondary">
+        Status
+        <select
+          value={filters.status}
+          onChange={(event) =>
+            onChange({ ...filters, status: event.target.value as FilterState["status"] })
+          }
+          className="rounded-lg border border-border bg-ink px-3 py-1 text-xs text-text-primary"
+        >
           {statusOptions.map((option) => (
-            <button
-              key={option}
-              onClick={() => onChange({ ...filters, status: option })}
-              className={`rounded-full px-3 py-1 text-xs transition-colors ${
-                filters.status === option
-                  ? "bg-primary text-white"
-                  : "bg-ink text-text-secondary hover:text-text-primary"
-              }`}
-            >
+            <option key={option} value={option} className="bg-ink">
               {statusLabels[option] ?? option}
-            </button>
+            </option>
           ))}
-        </div>
-      </div>
+        </select>
+      </label>
     </div>
   );
 }

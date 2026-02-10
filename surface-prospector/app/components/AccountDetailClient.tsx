@@ -79,6 +79,11 @@ export default function AccountDetailClient({ company }: { company: Company }) {
   return (
     <div className="grid gap-6 lg:grid-cols-[3fr_2fr]">
       <div className="space-y-6">
+        <div className="rounded-2xl border border-border bg-surface p-4">
+          <p className={`text-xs text-text-secondary ${flashStatus ? "animate-flash" : ""}`}>
+            Current status: <span className="text-text-primary">{status.replace("_", " ")}</span>
+          </p>
+        </div>
         <div className="rounded-2xl border border-border bg-surface p-6">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
@@ -248,11 +253,7 @@ export default function AccountDetailClient({ company }: { company: Company }) {
       </div>
 
       <div className="space-y-6">
-        <div className="rounded-2xl border border-border bg-surface p-4">
-          <p className={`text-xs text-text-secondary ${flashStatus ? "animate-flash" : ""}`}>
-            Current status: <span className="text-text-primary">{status.replace("_", " ")}</span>
-          </p>
-        </div>
+        
 
         {isLoading && (
           <div className="space-y-4 rounded-2xl border border-border bg-surface p-6">

@@ -9,6 +9,7 @@ import { useStorageSnapshot } from "@/lib/storage-hooks";
 const navItems = [
   { href: "/", label: "Dashboard" },
   { href: "/pipeline", label: "Pipeline" },
+  { href: "/leads", label: "Lead Ocean" },
 ];
 
 const statusLabels: Record<string, string> = {
